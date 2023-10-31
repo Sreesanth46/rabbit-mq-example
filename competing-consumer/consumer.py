@@ -33,7 +33,7 @@ channel = connection.channel() # default
 
 channel.queue_declare(queue='letterbox')
 
-channel.basic_qos(prefetch_count=1) # only process 1 message at a time
+channel.basic_qos(prefetch_count=1) # only process 1 message at a time // also skips round robin
 
 channel.basic_consume('letterbox', on_message_callback=on_message_received)
 
