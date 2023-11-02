@@ -30,8 +30,6 @@ channel.exchange_declare(exchange='secondexchange', exchange_type=ExchangeType.f
 # where we want the message to go to first arg and from where its going from second arg
 channel.exchange_bind("secondexchange", "firstexchange")
 
-channel.queue_declare(queue='letterbox')
-
 message = "This message has gone through multiple exchanges"
 
 channel.basic_publish(exchange='firstexchange', routing_key='', body=message)
