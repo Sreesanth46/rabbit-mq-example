@@ -17,11 +17,13 @@ class TopicExchangeMessageConsumer(BasicPikaClient):
             routing_key=routing_key
         )
 
-    def consume_messages(self):
+    def consume_messages(self, *args, **kwargs):
         self.channel.basic_consume(
             queue=self.queue.method.queue,
             on_message_callback=message_callback,
-            auto_ack=True    
+            auto_ack=True,
+            *args,
+            **kwargs    
         )
         print(' [*] Waiting for messages. To exit press CTRL+C')
         self.channel.start_consuming()
