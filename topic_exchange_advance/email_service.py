@@ -35,7 +35,7 @@ class TopicExchangeMessageConsumer(BasicPikaClient):
 def message_callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
 
-    print(f"\n {ch =} \n {method =} \n {properties =} \n {body =}")
+    # print(f"\n {ch =} \n {method =} \n {properties =} \n {body =}")
 
 
 def main():
@@ -44,6 +44,8 @@ def main():
     basic_message_receiver.declare_exchange("topic_exchange", ExchangeType.topic)
 
     basic_message_receiver.declare_queue("email_service_queue")
+
+    basic_message_receiver.bind_queue("anything.#")
 
     basic_message_receiver.bind_queue("#.create")
 
